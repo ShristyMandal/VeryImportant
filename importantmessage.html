@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Be My Valentine</title>
+<style>
+body {
+    background: linear-gradient(135deg, #ffb6c1, #ffd1dc);
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    color: white;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.card {
+    background: rgba(255,255,255,0.25);
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    width: 80%;
+    max-width: 420px;
+    margin: auto;
+    margin-top: 15%;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+h2 {
+    font-weight: normal;
+}
+
+button {
+    padding: 12px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin: 20px;
+}
+
+#yesBtn {
+    background-color: #ff5fa2;
+    color: white;
+}
+
+#noBtn {
+    background-color: #ff4d4d;
+    color: white;
+    position: absolute;
+}
+
+.heart {
+    position: fixed;
+    top: -10px;
+    font-size: 20px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+
+audio {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card" id="card">
+    <h1>💖 Hey My Love 💖</h1>
+    <h2>I made this just for you…</h2>
+    <h2>Will you be my Valentine? 💌</h2>
+    <br>
+    <button id="yesBtn" onclick="yesClicked()">YES 💘</button>
+    <button id="noBtn" onmouseover="moveButton()">NO 🙈</button>
+</div>
+
+<script>
+function moveButton() {
+    let x = Math.random() * (window.innerWidth - 120);
+    let y = Math.random() * (window.innerHeight - 60);
+    document.getElementById("noBtn").style.left = x + "px";
+    document.getElementById("noBtn").style.top = y + "px";
+}
+
+function yesClicked() {
+    document.body.innerHTML = `
+    <div style="margin-top:20%; color:white; text-align:center;">
+        <h1>🎉 Congrats, you’re officially my Valentine ❤️ 🎉</h1>
+        <h2>I can’t wait to celebrate with you 😘</h2>
+        <p>Always yours 💕</p>
+    </div>`;
+}
+
+setInterval(() => {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+}, 300);
+</script>
+
+</body>
+</html>
